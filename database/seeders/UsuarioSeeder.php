@@ -8,6 +8,7 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Hash;;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioSeeder extends Seeder
 {
@@ -72,9 +73,9 @@ class UsuarioSeeder extends Seeder
         $vendedorRole = Role::firstOrCreate(['name' => 'Vendedor']);
         $vendedorRole->syncPermissions($vendedorPermisos);
 
-
+        // $tipo_usuarios = DB::table('tipo_usuarios')->pluck('id', 'name');
         $usuarios = [
-            ['name' => 'Usuario Administrador', 'email' => 'admin@prueba.com', 'password' => 'admin', 'role' => $adminRole],
+            ['name' => 'Usuario Administrador', 'email' => 'admin@prueba.com', 'password' => 'admin' ,'role' => $adminRole],
             ['name' => 'Usuario Vendedor', 'email' => 'vendedor@prueba.com', 'password' => 'vendedor', 'role' => $vendedorRole],
         ];
 

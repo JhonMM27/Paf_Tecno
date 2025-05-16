@@ -16,14 +16,24 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('tipo_usuario', ['empleado', 'cliente'])->default('empleado');
+            // $table->enum('tipo_usuario', ['empleado', 'cliente'])->default('empleado');
             $table->string('documento')->nullable();
             $table->string('direccion')->nullable();
             $table->string('telefono')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+
+            $table->unsignedBigInteger('TipoUsuario_id')->default(1);
+
+            // $table->foreign('TipoUsuario_id')->references('id')->on('tipo_usuarios')->delete('cascada');
+            
+
             $table->rememberToken();
             $table->timestamps();
         });
+
+    //     Schema::table('users', function (Blueprint $table) {
+    // $table->foreign('TipoUsuario_id')->references('id')->on('tipo_usuarios')->onDelete('cascade');
+// });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

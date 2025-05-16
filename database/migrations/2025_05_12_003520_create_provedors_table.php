@@ -14,12 +14,17 @@ return new class extends Migration
         Schema::create('provedors', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->enum('persona', ['natular', 'juridica']);
+            // $table->enum('persona', ['natular', 'juridica']);
             $table->string('ruc_dni')->unique();
             $table->string('telefono')->nullable();
             $table->string('direccion')->nullable();
             $table->string('correo')->nullable();
             $table->text('observaciones')->nullable();
+
+            $table->unsignedSmallInteger('TipoProveedor_id');
+
+            // $table->foreign('TipoProveedor_id')->references('id')->on('tipo_proveedor')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
